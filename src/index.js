@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { GlobalStateProvider } from './GlobalState';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { Switch, BrowserRouter as Router, Route } from 'react-router-dom';
@@ -14,19 +15,21 @@ import BlendDetail from './frontend/blend-detail';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <Switch>
-        <Route path="/" exact>
-          <App />
-        </Route>
-        <Route path="/spices/:id">
-          <SpiceDetail />
-        </Route>
-        <Route path="/blends/:id">
-          <BlendDetail />
-        </Route>
-      </Switch>
-    </Router>
+    <GlobalStateProvider>
+      <Router>
+        <Switch>
+          <Route path="/" exact>
+            <App />
+          </Route>
+          <Route path="/spices/:id">
+            <SpiceDetail />
+          </Route>
+          <Route path="/blends/:id">
+            <BlendDetail />
+          </Route>
+        </Switch>
+      </Router>
+    </GlobalStateProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

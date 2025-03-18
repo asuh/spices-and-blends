@@ -1,4 +1,4 @@
-import { Server, Response } from 'miragejs';
+import { Server, Model, Response } from 'miragejs';
 
 //routes
 import spiceRoutes from './spices/routes';
@@ -9,6 +9,11 @@ import spices from './spices/data';
 import blends from './blends/data';
 
 const server = new Server({
+  models: {
+    spice: Model,
+    blend: Model,
+  },
+  
   routes() {
     this.namespace = '/api';
 

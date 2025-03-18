@@ -11,11 +11,24 @@ const blendRoutes = {
     return blend;
   },
   addBlend: (schema, request) => {
-    const body = JSON.parse(request.requestBody);
-    // add new blend
-    const blendRes = schema.db.blends.create(body);
-    return blendRes;
-  },
+    try {
+      const body = JSON.parse(request.requestBody);
+  
+      // Validate the payload
+      if (!body.name || !Array.isArray(body.spices) || !Array.isArray(body.blends)) {
+        console.error('Invalid payload:', body);
+        return new Response(400, {}, { error: 'Invalid payload' });
+      }
+  
+      // Add the new blend to the database
+      const blendRes = schema.blends.create(body);
+  
+      return blendRes;
+    } catch (error) {
+      console.error('Error in addBlend handler:', error);
+      return new Response(500, {}, { error: 'Internal Server Error' });
+    }
+  },  
 };
 
 export default blendRoutes;

@@ -11,6 +11,7 @@ import backend from './backend';
 import App from './frontend/home';
 import SpiceDetail from './frontend/spice-detail';
 import BlendDetail from './frontend/blend-detail';
+import AddBlendForm from './frontend/add-blend';
 import { GlobalStateProvider, useGlobalState } from './GlobalState';
 
 function AppWrapper() {
@@ -30,6 +31,9 @@ function AppWrapper() {
       </Route>
       <Route path="/blends/:id">
         <BlendDetail />
+      </Route>
+      <Route path="/add-blend">
+        <AddBlendForm />
       </Route>
     </Switch>
   );

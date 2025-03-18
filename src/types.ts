@@ -19,3 +19,10 @@ export interface GlobalState {
   blends: Blend[];
   loading: boolean;
 }
+
+export interface NewBlend {
+  name: string;
+  description: string;
+  spices: number[];
+  blends: number[];
+}

@@ -1,14 +1,14 @@
-import axios from "axios";
 import { createContext, useContext, useState, useEffect } from "react";
 import type { GlobalState, Spice, Blend } from "./types";
+import axios from "axios";
 
 interface GlobalStateProviderProps {
   children: React.ReactNode;
 }
 
-const GlobalStateContext = createContext<GlobalState | undefined>(undefined);
+const GlobalStateContext = createContext<GlobalState & { setBlends: React.Dispatch<React.SetStateAction<Blend[]>> } | undefined>(undefined);
 
-export const GlobalStateProvider = ({children}: GlobalStateProviderProps) => {
+export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({ children }) => {
   const [spices, setSpices] = useState<Spice[]>([]);
   const [blends, setBlends] = useState<Blend[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -37,7 +37,7 @@ export const GlobalStateProvider = ({children}: GlobalStateProviderProps) => {
   }, []);
 
   return (
-    <GlobalStateContext.Provider value={{ spices, blends, loading }}>
+    <GlobalStateContext.Provider value={{ spices, blends, loading, setBlends }}>
       {children}
     </GlobalStateContext.Provider>
   )

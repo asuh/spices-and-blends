@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom'
 const SpiceDetails = ({ spice }) => {
   return (
     <ul>
-      <li>Spice Name: {spice.name}</li>
       <li>Spice Color: {spice.color}</li>
       <li>Spice Cost: {spice.price}</li>
       <li>Spice Heat: {spice.heat}</li>
@@ -62,7 +61,7 @@ const SpiceDetail = ({ spice: spiceProp }) => {
 
   return (
     <>
-      <h2>Spice Detail Page</h2>
+      <h2>{spice.name}</h2>
       <SpiceDetails spice={spice} />
     </>
   )

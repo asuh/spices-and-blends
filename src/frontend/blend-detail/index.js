@@ -1,59 +1,34 @@
 // get blend API is at /api/v1/blends/:id
-import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 import { useGlobalState } from '../../GlobalState';
 
 const BlendDetail = () => {
-  const { id } = useParams();
-  const { spices: globalSpices, blends: globalBlends } = useGlobalState();
-  const [blend, setBlend] = useState(null);
-  const [resolvedSpices, setResolvedSpices] = useState([]);
-  const [error, setError] = useState(null);
+  const { id } = useParams(); // blend ID from the URL
+  const { spices, blends } = useGlobalState();
 
-  /* load blends when the page loads */
-  useEffect(() => {
-    const blendFromState = globalBlends.find((blend) => blend.id === Number.parseInt(id));
-    if (blendFromState) {
-      setBlend(blendFromState);
-    } else {
-      axios.get(`/api/v1/blends/${id}`).then((response) => {
-        setBlend(response.data);
-      })
-      .catch((error) => {
-        setError(error);
-      });
-    }
-  }, [id, globalBlends]);
-
-  /* load spices when the page loads */
-  useEffect(() => {
-    if (blend?.spices.length > 0) {
-      const resolved = blend.spices.map((spiceId) => {
-        const spice = globalSpices.find((spice) => spice.id === spiceId);
-        console.log({spice});
-        return spice || { id: spiceId, name: `Unknown spice (ID: ${spiceId})` };
-      });
-      setResolvedSpices(resolved);
-    }
-  }, [blend, globalSpices]);
-
-  if (error) {
-    return <div>{error.message}</div>;
-  }
+  const blend = blends.find(blend => blend.id === id);
 
   if (!blend) {
-    return <div>Loading...</div>;
+    return <div>Blend not found</div>;
   }
 
+  /* TODO: debug the data types and write some type checks somewhere in app */
+  const spicesList = blend.spices.map((spiceId) => {
+    const spice = spices.find(spice => Number(spice.id) === Number(spiceId));
+    return spice || { id: spiceId, name: `Unknown Spice (ID: ${spiceId})` };
+  });
+  
   return (
     <div>
       <h2>{blend.name}</h2>
-      <h3>Included Spices:</h3>
+      <h3>{blend.description}</h3>
+      <h4>Included Spices:</h4>
       <ul>
-        {resolvedSpices.map((spice) => (
+        {spicesList.map((spice) => (
           <li key={spice.id}>
             {spice.name}
+            {spice.price && <span> ({spice.price})</span>}
+            {spice.heat && <span> ({spice.heat})</span>}
           </li>
         ))}
       </ul>

@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { GlobalStateProvider } from './GlobalState';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { Switch, BrowserRouter as Router, Route } from 'react-router-dom';
@@ -12,22 +11,35 @@ import backend from './backend';
 import App from './frontend/home';
 import SpiceDetail from './frontend/spice-detail';
 import BlendDetail from './frontend/blend-detail';
+import { GlobalStateProvider, useGlobalState } from './GlobalState';
+
+function AppWrapper() {
+  const { loading } = useGlobalState();
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <Switch>
+      <Route path="/" exact>
+        <App />
+      </Route>
+      <Route path="/spices/:id">
+        <SpiceDetail />
+      </Route>
+      <Route path="/blends/:id">
+        <BlendDetail />
+      </Route>
+    </Switch>
+  );
+}
 
 ReactDOM.render(
   <React.StrictMode>
     <GlobalStateProvider>
       <Router>
-        <Switch>
-          <Route path="/" exact>
-            <App />
-          </Route>
-          <Route path="/spices/:id">
-            <SpiceDetail />
-          </Route>
-          <Route path="/blends/:id">
-            <BlendDetail />
-          </Route>
-        </Switch>
+        <AppWrapper />
       </Router>
     </GlobalStateProvider>
   </React.StrictMode>,

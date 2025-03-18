@@ -1,26 +1,11 @@
 import './index.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useGlobalState } from '../../GlobalState';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 function Home() {
-  const { spices, setSpices, blends, setBlends } = useGlobalState();
+  const { spices, blends } = useGlobalState();
   const [searchString, updateSearchString] = useState('')
-
-  // load spices when the page loads
-  useEffect(() => {
-    if (spices.length === 0) {
-      axios.get('/api/v1/spices').then((response) => {
-        setSpices(response.data);
-      });
-    }
-    if (blends.length === 0) {
-      axios.get('/api/v1/blends').then((response) => {
-        setBlends(response.data);
-      });
-    }
-  }, [spices, setSpices, blends, setBlends]);
 
   return (
     <div className="App">

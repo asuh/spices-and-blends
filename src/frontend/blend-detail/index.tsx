@@ -3,11 +3,16 @@ import { useParams } from 'react-router-dom';
 import { useGlobalState } from '../../GlobalState';
 import SpiceDetail from '../spice-detail';
 
+interface RouteParams {
+  id: string;
+}
+
 const BlendDetail = () => {
-  const { id } = useParams(); // blend ID from the URL
+  const { id } = useParams<RouteParams>(); // blend ID from the URL
+  const blendId = Number(id);
   const { spices, blends } = useGlobalState();
 
-  const blendDetailsList = (blendId, visitedBlends = new Set()) => {
+  const blendDetailsList = (blendId: number, visitedBlends = new Set()) => {
     // If the blend has already been visited, mark it as visited
     if (visitedBlends.has(blendId)) return null;
     visitedBlends.add(blendId);
@@ -53,7 +58,7 @@ const BlendDetail = () => {
   return (
     <>
       <h1>Blend Details</h1>
-      {blendDetailsList(id)}
+      {blendDetailsList(blendId)}
     </>
   );
 };

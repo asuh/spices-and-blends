@@ -1,3 +1,70 @@
-.App {
+.main {
+  max-width: 800px;
+  margin: 1.25rem auto;
+  padding: 1.25rem;
+  border: 1px solid #ddd;
+  border-radius: 0.3rem;
+  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+}
+
+.main h1 {
+  font-size: 2rem;
+  margin-bottom: 1.25rem;
   text-align: center;
+  color: #333;
+}
+
+.main header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.main header nav a {
+  margin-left: 1.25rem;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.main header nav a:hover {
+  text-decoration: underline;
+}
+
+.main header nav a:focus {
+  outline: none;
+  text-decoration: underline;
+}
+
+.main h4 {
+  font-size: 1.2rem;
+  margin-top: 1.25rem;
+  margin-bottom: 0.625rem;
+  color: #333;
+}
+
+.main ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.main ul li {
+  margin-bottom: 0.3rem;
+}
+
+.main ul li a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.main ul li a:hover {
+  text-decoration: underline;
+}
+
+.main ul li a:focus {
+  outline: none;
+  text-decoration: underline;
 }

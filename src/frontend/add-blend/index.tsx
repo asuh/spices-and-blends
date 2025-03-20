@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useGlobalState } from "../../GlobalState";
 import { Blend, Spice, NewBlend } from "../../types";
 import axios from "axios";
+import './index.css';
 
 const AddBlendForm: React.FC = () => {
   const { spices, blends, setBlends } = useGlobalState();
@@ -55,12 +56,10 @@ const AddBlendForm: React.FC = () => {
   }
   
   return (
-    <>
+    <main className="main">
       <h1>Add a New Blend</h1>
-      {error && <p>{error}</p>}
-      {success && <p>{success}</p>}
 
-      <form onSubmit={handleSubmit}>
+      <form className="add-blend-form" onSubmit={handleSubmit}>
         <fieldset>
           <legend>Add Blend</legend>
 
@@ -103,8 +102,10 @@ const AddBlendForm: React.FC = () => {
           </div>
         </fieldset>
         <button type="submit">Add Blend</button>
+        {error && <p className="error">{error}</p>}
+        {success && <p className="success">{success}</p>}
       </form>
-    </>
+    </main>
   );
 };
 

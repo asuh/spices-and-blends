@@ -1,0 +1,27 @@
+.navbar {
+  background-color: #007bff;
+  padding: 0.75rem;
+}
+
+.navbar ul {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin-block: 0;
+  padding-left: 0;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+.navbar a:focus {
+  outline: 2px solid white;
+  outline-offset: 2px;
+}

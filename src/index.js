@@ -5,7 +5,9 @@ import reportWebVitals from './reportWebVitals';
 import { Switch, BrowserRouter as Router, Route } from 'react-router-dom';
 
 // this will boostrap and run our backend.
-import backend from './backend';
+import makeServer from './backend';
+
+import Navbar from './components/Navbar/Navbar';
 
 // routes
 import App from './frontend/home';
@@ -43,12 +45,18 @@ ReactDOM.render(
   <React.StrictMode>
     <GlobalStateProvider>
       <Router>
+        <a href="#main" className="visually-hidden">Skip to Content</a>
+        <header>
+          <Navbar />
+        </header>
         <AppWrapper />
       </Router>
     </GlobalStateProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+makeServer();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

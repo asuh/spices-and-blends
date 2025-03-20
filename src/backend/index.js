@@ -8,29 +8,33 @@ import blendRoutes from './blends/routes';
 import spices from './spices/data';
 import blends from './blends/data';
 
-const server = new Server({
-  models: {
-    spice: Model,
-    blend: Model,
-  },
-  
-  routes() {
-    this.namespace = '/api';
+export default function makeServer() {
+  const server = new Server({
+    models: {
+      spice: Model,
+      blend: Model,
+    },
 
-    //spices
-    this.get('/v1/spices', spiceRoutes.getSpices);
-    this.get('/v1/spices/2', spiceRoutes.errorSpice);
-    this.get('/v1/spices/:id', spiceRoutes.getSpice);
-    this.put('/v1/spices/:id', spiceRoutes.updateSpice);
+    routes() {
+      this.namespace = '/api';
 
-    //blends
-    this.get('/v1/blends', blendRoutes.getBlends);
-    this.get('/v1/blends/:id', blendRoutes.getBlend);
-    this.post('/v1/blends', blendRoutes.addBlend);
-  },
-});
+      //spices
+      this.get('/v1/spices', spiceRoutes.getSpices);
+      this.get('/v1/spices/2', spiceRoutes.errorSpice);
+      this.get('/v1/spices/:id', spiceRoutes.getSpice);
+      this.put('/v1/spices/:id', spiceRoutes.updateSpice);
 
-server.db.loadData({
-  spices,
-  blends,
-});
+      //blends
+      this.get('/v1/blends', blendRoutes.getBlends);
+      this.get('/v1/blends/:id', blendRoutes.getBlend);
+      this.post('/v1/blends', blendRoutes.addBlend);
+    },
+  });
+
+  server.db.loadData({
+    spices,
+    blends,
+  });
+
+  return server;
+}

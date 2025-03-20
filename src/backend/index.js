@@ -1,4 +1,4 @@
-import { Server, Model, Response } from 'miragejs';
+import { Server, Model } from 'miragejs';
 
 //routes
 import spiceRoutes from './spices/routes';

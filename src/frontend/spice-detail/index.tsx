@@ -31,6 +31,7 @@ const SpiceDetail: React.FC<SpiceDetailProps> = ({ spice: spiceProp }) => {
 
   useEffect(() => {
     if (!spiceProp) {
+      // controller is used to abort the fetch if the component is unmounted
       const controller = new AbortController();
       const fetchSpice = async () => {
         setLoading(true);

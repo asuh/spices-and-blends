@@ -29,7 +29,7 @@ function Home() {
         />
       </search>
       <article aria-live="polite">
-        { filteredSpices.length > 0 && (
+        {filteredSpices.length > 0 && (
           <section className="spice-list">
             <h2>Spice List</h2>
             <ul className="spice-list">
@@ -45,7 +45,7 @@ function Home() {
             </ul>
           </section>
         )}
-        { filteredBlends.length > 0 && (
+        {filteredBlends.length > 0 && (
           <section className="blend-list">
             <h2>Blend List</h2>
             <ul>

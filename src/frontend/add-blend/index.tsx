@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useGlobalState } from "../../GlobalState";
-import type { Blend, Spice, NewBlend } from "../../types";
+import type { Blend, NewBlend } from "../../types";
 import axios from "axios";
 import './index.css';
 
 const AddBlendForm: React.FC = () => {
-  const { spices, blends, setBlends } = useGlobalState();
+  const { setBlends } = useGlobalState();
   const [name, setName] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [spiceIds, setSpiceIds] = useState<string>('');
@@ -75,26 +75,29 @@ const AddBlendForm: React.FC = () => {
             />
           </div>
           <div className="form-control">
-            <label htmlFor="name">Description:</label>
+            <label htmlFor="description">Description:</label>
             <textarea
               value={description}
+              name="description"
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Enter blend description"
             />
           </div>
           <div className="form-control">
-            <label htmlFor="name">Spices:</label>
+            <label htmlFor="spices">Spices:</label>
             <input 
-              type="text" 
+              type="text"
+              name="spices"
               value={spiceIds}
               onChange={(e) => setSpiceIds(e.target.value)}
               placeholder="e.g. 1, 2, 3"
             />
           </div>
           <div className="form-control">
-            <label htmlFor="name">Child Blends:</label>
+            <label htmlFor="child-blends">Child Blends:</label>
             <input 
-              type="text" 
+              type="text"
+              name="child-blends"
               value={childBlendIds}
               onChange={(e) => setChildBlendIds(e.target.value)}
               placeholder="e.g., 0, 1"

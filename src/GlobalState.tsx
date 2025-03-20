@@ -23,6 +23,7 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({ childr
         setSpices(spicesResponse.data);
         setBlends(blendsResponse.data);
       } catch (error: unknown) {
+        // To prevent error.message from being undefined, check if error is an instance of Error
         if (error instanceof Error) {
           console.error("Error: ", error.message);
         } else {
@@ -43,7 +44,6 @@ export const GlobalStateProvider: React.FC<GlobalStateProviderProps> = ({ childr
   )
 }
 
-// Custom hook to use the global state
 export const useGlobalState = () => {
   const context = useContext(GlobalStateContext);
   if (!context) {

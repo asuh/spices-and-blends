@@ -23,7 +23,7 @@ const blendRoutes = {
       // Add the new blend to the database
       const blendRes = schema.blends.create(body);
   
-      return blendRes;
+      return blendRes.attrs;
     } catch (error) {
       console.error('Error in addBlend handler:', error);
       return new Response(500, {}, { error: 'Internal Server Error' });

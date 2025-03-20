@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useGlobalState } from "../../GlobalState";
-import { Blend, Spice, NewBlend } from "../../types";
+import type { Blend, Spice, NewBlend } from "../../types";
 import axios from "axios";
 import './index.css';
 
@@ -37,7 +37,7 @@ const AddBlendForm: React.FC = () => {
 
     try {
       const { data } = await axios.post<Blend>('/api/v1/blends', newBlend);
-      setBlends([...blends, data]);
+      setBlends((prev) => [...prev, data]);
       setName('');
       setDescription('');
       setSpiceIds('');

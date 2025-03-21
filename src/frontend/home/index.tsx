@@ -33,11 +33,7 @@ function Home() {
           <section className="spice-list">
             <h2>Spice List</h2>
             <ul className="spice-list">
-              {spices
-                .filter(spice => 
-                  spice.name.toLowerCase().includes(searchString.toLowerCase())
-                )
-                .map((spice) => (
+              {filteredSpices.map((spice) => (
                 <li key={spice.id} className="spice">
                   <Link to={`/spices/${spice.id}`}>{spice.name}</Link>
                 </li>
@@ -49,11 +45,7 @@ function Home() {
           <section className="blend-list">
             <h2>Blend List</h2>
             <ul>
-              {blends
-                .filter(blend => 
-                  blend.name.toLowerCase().includes(searchString.toLowerCase())
-                )
-                .map((blend) => (
+              {filteredBlends.map((blend) => (
                 <li key={blend.id} className="blend">
                   <Link to={`/blends/${blend.id}`}>{blend.name}</Link>
                 </li>

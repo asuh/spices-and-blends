@@ -1,4 +1,3 @@
-// get blend API is at /api/v1/blends/:id
 import { useParams } from 'react-router-dom';
 import { useGlobalState } from '../../GlobalState';
 import SpiceDetail from '../spice-detail';
@@ -8,7 +7,7 @@ interface RouteParams {
 }
 
 const BlendDetail = () => {
-  const { id } = useParams<RouteParams>(); // blend ID from the URL
+  const { id } = useParams<RouteParams>();
   const blendId = Number(id);
   const { spices, blends } = useGlobalState();
 

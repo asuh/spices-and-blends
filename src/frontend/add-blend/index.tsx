@@ -70,6 +70,7 @@ const AddBlendForm: React.FC = () => {
               id="name" 
               name="name"
               value={name}
+              required
               onChange={(e) => setName(e.target.value)}
               placeholder="Enter a blend name"
             />
@@ -78,6 +79,7 @@ const AddBlendForm: React.FC = () => {
             <label htmlFor="description">Description:</label>
             <textarea
               value={description}
+              required
               name="description"
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Enter blend description"
@@ -89,6 +91,7 @@ const AddBlendForm: React.FC = () => {
               type="text"
               name="spices"
               value={spiceIds}
+              required
               onChange={(e) => setSpiceIds(e.target.value)}
               placeholder="e.g. 1, 2, 3"
             />
@@ -99,6 +102,7 @@ const AddBlendForm: React.FC = () => {
               type="text"
               name="child-blends"
               value={childBlendIds}
+              required
               onChange={(e) => setChildBlendIds(e.target.value)}
               placeholder="e.g., 0, 1"
             />
